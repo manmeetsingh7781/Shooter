@@ -1,0 +1,82 @@
+int screen_width, screen_height;
+float size = 20, playerX, playerY;
+
+float moverPlayerY = 0, moverPlayerX = 0, moverHelperX, moverHelperY;
+float playerHelperX = 1, playerHelperY = 1;
+
+int ammo = 10;
+Shot[] s = new Shot[ammo];
+
+int counter = 0;
+
+
+
+
+void setup(){
+  
+
+// Screen
+screen_width = width;
+screen_height = height;
+size(600, 600, P3D);
+
+
+// Player  
+playerX = (screen_width/2)-size;
+playerY = (screen_height)-size*2;
+
+for(int x =0; x < ammo; x++){
+
+  s[x]  = new Shot();
+
+  
+}
+
+}
+
+
+
+
+void draw(){
+  
+background(255);
+draw_player();
+
+
+  s[counter].shoot();
+  s[counter].shooter();
+  
+
+}
+
+void keyPressed(){
+   
+  // KeyPressed
+  if(keyPressed){
+    
+     if (key == CODED) {
+    if (keyCode == LEFT) {
+     moverHelperX = -playerHelperX;
+       
+     moverHelperY = playerHelperY;
+    } 
+    
+    
+    else if (keyCode == RIGHT) {
+     
+      moverHelperX  = playerHelperX;
+     
+      moverHelperY = +playerHelperY;
+      
+    }  
+    else if(keyCode == UP){
+       
+       s[counter].shoot();
+       s[counter].shooter();
+       counter+=1;
+     System.out.println(counter + " The counter");
+    }
+  }
+ }
+
+}
